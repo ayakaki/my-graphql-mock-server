@@ -7,7 +7,7 @@ Apollo Serverを用いた GraphQL モックサーバ
 - レスポンスヘッダーとして`Set-Cookie`を返却
 
 ## HOW TO USE
-- 最初は`npm ci`する
+- node_modulesをダウンロードしていない場合は、`npm ci`とコマンドする
 - ターミナルにて`node server.ts`とコマンドする
 - `localhost:4000`にアクセスする
 - `Query your server`を押下し、遷移する
