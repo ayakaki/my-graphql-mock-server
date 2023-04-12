@@ -12,3 +12,31 @@ Apollo Serverを用いた GraphQL モックサーバ
 - `localhost:4000`にアクセスする
 - `Query your server`を押下し、遷移する
 - 適切なクエリを送信する
+
+## EXAMPLE
+### Query
+```
+query {
+  account {
+    userName,
+    email
+  },
+  foods {
+    name,
+    price
+  }
+}
+```
+### Mutation
+```
+mutation {
+  updateAccount(userName: "Jane", email: "jane@example.com") {
+    userName
+    email
+  }
+  addFood(name: "Orange", price: 150) {
+    name
+    price
+  }
+}
+```

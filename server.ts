@@ -18,6 +18,11 @@ const typeDefs = gql`
     account: Account
     foods: [Food]
   }
+
+  type Mutation {
+    updateAccount(userName: String, email: String): Account
+    addFood(name: String!, price: Int!): Food
+  }
 `;
 
 // データの定義
@@ -45,8 +50,20 @@ const resolvers = {
     },
     foods: () => {
       return foods;
-    }
+    },
   },
+  Mutation: {
+    updateAccount: (_, { userName, email }) => {
+      if (userName) account.userName = userName;
+      if (email) account.email = email;
+      return account;
+    },
+    addFood: (_, { name, price }) => {
+      const newFood = { name, price };
+      foods.push(newFood);
+      return newFood;
+    }
+  }
 };
 // Apolloサーバーのインスタンス作成
 const server = new ApolloServer({
@@ -74,7 +91,7 @@ app.use(server.graphqlPath, (req, res, next) => {
   server.applyMiddleware({ app });
 
   // サーバーを起動
-  app.listen({ port: 4000 }, () =>
-    console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
+  app.listen({ port: 4001 }, () =>
+    console.log(`🚀 Server ready at http://localhost:4001${server.graphqlPath}`)
   );
 })();
